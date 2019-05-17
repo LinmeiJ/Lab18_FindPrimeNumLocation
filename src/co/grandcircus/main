@@ -1,0 +1,53 @@
+package co.grandcircus;
+
+import java.util.Scanner;
+
+public class FindPrimePosition {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Let's locate some primes!");
+
+		String c = "y";
+		while (c.equals("y")){
+			System.out.print("Which prime number are you looking for? ");
+			int n = sc.nextInt();
+			int count = 0;
+			for (int i = 2; i <= n; i++) {
+				if (isPrime(i)) {
+					count++;
+				}
+				if (i == n) {
+					if (isPrime(n)) {
+						System.out.println(n + " is prime number" + "at position " + count);
+					} else if (!isPrime(n)) {
+						System.out.println("Oops! " + n + " is not a prime number");
+					}
+				}
+			}
+			sc.nextLine();
+			System.out.println("Do you want to find another prime number?(y/n)");
+			c = sc.nextLine().toLowerCase();
+		}
+		System.out.println("Goodbye");
+		sc.close();
+
+	}
+
+	public static boolean isPrime(int n) {
+		int remainder;
+		boolean isPrime = true;
+		if (isPrime) {
+			for (int i = 2; i <= (n / 2); i++) {
+				remainder = n % i;
+				if (remainder == 0) {
+					isPrime = false;
+					break;
+				}
+			}
+		} else {
+			isPrime = false;
+		}
+		return isPrime;
+	}
+}
